@@ -1,0 +1,66 @@
+
+<project name="Lab5" default="compile" basedir=".">
+    <property file="build.properties"/>
+    <path id="lib">
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <target name="compile">
+        <javac destdir="${out}"
+               includeantruntime="false"
+               classpath="${jsonDir}">
+            <src path="${lab}"/>
+            <compilerarg value="-Xlint"/>
+        </javac>
+    </target>
+    <target name="build" depends="compile">
+        <jar destfile="${jarBuildName}">
+            <fileset dir="${out}"/>
+            <manifest>
+                <attribute name="Main-Class" value="${lab}/Main"/>
+                <attribute name="Class-Path" value="${jsonDir}"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="clean">
+        <delete dir="${out}"/>
+    </target>
+    <target name="test" depends="build">
+        <javac srcdir="${testDir}" destdir="${out}" includeantruntime="false">
+            <classpath>
+                <fileset dir="${lib}" includes="*.jar"/>
+                <pathelement location="${outClasses}" />
+            </classpath>
+        </javac>
+        <junit fork = "yes" showoutput="true" printsummary="on" haltonfailure="yes" haltonerror="no">
+            <formatter type="xml"/>
+            <classpath>
+                <path refid="lib"/>
+                <pathelement location="${outClasses}"/>
+                <pathelement location="${out}"/>
+            </classpath>
+            <test name="${NameOfTest1}"/>
+            <test name="${NameOfTest2}"/>
+        </junit>
+    </target>
+    <target name="report" depends="test">
+        <exec executable="svn">
+            <arg line="co ${svnRep} ."/>
+        </exec>
+        <exec executable="svn">
+            <arg line="add TEST-${NameOfTest1}.xml"/>
+        </exec>
+        <exec executable="svn">
+            <arg line="add TEST-${NameOfTest2}.xml"/>
+        </exec>
+        <exec executable="svn">
+            <arg line="commit -m reportLab3"/>
+        </exec>
+    </target>
+    <target name="native2ascii">
+        <native2ascii src="${localFileDir}"
+                      dest="${destAsciiDir}"
+                      includes="${lab}.txt"/>
+    </target>
+</project>

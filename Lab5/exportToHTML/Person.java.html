@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>Person.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+.s5 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Person.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">/** 
+ * Created by bespa on 21.02.2017. 
+ */</span><span class="s1"> 
+</span><span class="s2">import </span><span class="s1">java.util.*; 
+ 
+</span><span class="s2">public class </span><span class="s1">Person { 
+    </span><span class="s2">public </span><span class="s1">String name1; 
+    </span><span class="s2">public </span><span class="s1">Map&lt;Rods, Person&gt; M = </span><span class="s2">new </span><span class="s1">HashMap&lt;&gt;(); 
+    </span><span class="s2">public </span><span class="s1">Set&lt;SecretS&gt; S = </span><span class="s2">new </span><span class="s1">LinkedHashSet&lt;&gt;(); 
+ 
+    Person() { 
+        name1 = </span><span class="s2">null</span><span class="s1">; 
+    } 
+ 
+    Person(String Name) { 
+        name1 = Name; 
+    } 
+ 
+    </span><span class="s2">public </span><span class="s1">String GetName() { 
+        </span><span class="s2">return </span><span class="s1">name1; 
+    } 
+ 
+    </span><span class="s2">public void </span><span class="s1">SetName(String Name) { 
+        name1 = Name; 
+    } 
+ 
+    </span><span class="s2">public void </span><span class="s1">SetRod(Person a, Rods b) { 
+        </span><span class="s2">if </span><span class="s1">(M.containsKey(b)) { 
+            Rods c = </span><span class="s2">new </span><span class="s1">Rods(); 
+            b.Eq(c); 
+            M.put(c, a); 
+        } </span><span class="s2">else</span><span class="s1"> 
+            M.put(b, a); 
+    } 
+ 
+    </span><span class="s2">public void </span><span class="s1">GetRods() { 
+        </span><span class="s2">if </span><span class="s1">(M.isEmpty()) { 
+            System.out.println(</span><span class="s2">this</span><span class="s1">.GetName() + </span><span class="s3">&quot; не имеет родственников!&quot;</span><span class="s1">); 
+            </span><span class="s2">return</span><span class="s1">; 
+        } 
+ 
+        System.out.println(</span><span class="s2">this</span><span class="s1">.GetName() + </span><span class="s3">&quot; имеет родственников : &quot;</span><span class="s1">); 
+        </span><span class="s2">for </span><span class="s1">(Map.Entry entry : M.entrySet()) { 
+            System.out.println(entry.getKey() + </span><span class="s3">&quot; &quot; </span><span class="s1">+ entry.getValue()); 
+        } 
+    } 
+ 
+    </span><span class="s2">public void </span><span class="s1">Think() { 
+        System.out.println(</span><span class="s2">this</span><span class="s1">.GetName() + </span><span class="s3">&quot; думает,что у него лучшие в мире родственники&quot;</span><span class="s1">); 
+        System.out.println(</span><span class="s3">&quot;Ему нравятся подарки&quot;</span><span class="s1">); 
+    } 
+ 
+    </span><span class="s2">public </span><span class="s1">String toString() { 
+        </span><span class="s2">return </span><span class="s1">GetName(); 
+    } 
+ 
+    </span><span class="s2">public void </span><span class="s1">SetSecret(SecretS a) { 
+        S.add(a); 
+    } 
+    </span><span class="s0">/** Показывает все подарки данного человека 
+     * </span><span class="s4">@author </span><span class="s0">Vlad 
+     * </span><span class="s4">@version </span><span class="s0">1.0 */</span><span class="s1"> 
+    </span><span class="s2">public void </span><span class="s1">ShowSecrets() { 
+        System.out.println(</span><span class="s2">this </span><span class="s1">+ </span><span class="s3">&quot; имеет подарки:&quot;</span><span class="s1">); 
+        </span><span class="s2">for </span><span class="s1">(SecretS s : S) { 
+            System.out.println(s); 
+        } 
+    } 
+ 
+    </span><span class="s2">public void </span><span class="s1">GiveSecret(Person a, SecretS s) { 
+        </span><span class="s2">if </span><span class="s1">(S.contains(s)) { 
+            a.SetSecret(s); 
+            S.remove(s); 
+        } </span><span class="s2">else </span><span class="s1">{ 
+            System.out.println(</span><span class="s3">&quot;У этого человека нет такого подарка!&quot;</span><span class="s1">); 
+        } 
+    } 
+    </span><span class="s0">/** info - Выводит информацию о коллекции LinkedHashSet 
+     * </span><span class="s4">@param </span><span class="s0">start - дата создания коллекции {</span><span class="s4">@link </span><span class="s0">Date} 
+     * </span><span class="s4">@version </span><span class="s0">1.0*/</span><span class="s1"> 
+    </span><span class="s2">public void </span><span class="s1">info(Date start) { 
+        System.out.println(</span><span class="s3">&quot;Тип коллекции : LinkedHashSet.&quot;</span><span class="s1">); 
+        System.out.println(</span><span class="s3">&quot;Полная дата создания : &quot; </span><span class="s1">+ start.toString()); 
+        System.out.println(</span><span class="s3">&quot;Размер коллекции : &quot; </span><span class="s1">+ S.size()); 
+    } 
+ 
+    </span><span class="s0">/** clear - Очищает коллекцию LinkedHashSet 
+     * </span><span class="s4">@version </span><span class="s0">1.0*/</span><span class="s1"> 
+    </span><span class="s2">public void </span><span class="s1">clear() { 
+        S.clear(); 
+    } 
+    </span><span class="s0">/** add_if_min - Добавляет элемент в коллекцию, если он по весу и объёму меньше каждого элемента в коллекции 
+     * </span><span class="s4">@param </span><span class="s0">object - добавляемый объект класса {</span><span class="s4">@link </span><span class="s0">SecretS} 
+     * </span><span class="s4">@version </span><span class="s0">1.0 
+     */</span><span class="s1"> 
+    </span><span class="s2">public void </span><span class="s1">add_if_min(SecretS object) { 
+        </span><span class="s2">int </span><span class="s1">a = </span><span class="s5">2147483647</span><span class="s1">; 
+        </span><span class="s2">for </span><span class="s1">(SecretS min : S) { 
+            </span><span class="s2">if </span><span class="s1">(min.GetSize() * min.GetWeight() &lt; a) { 
+                a = min.GetSize() * min.GetWeight(); 
+            } 
+        } 
+        </span><span class="s2">if </span><span class="s1">(object.GetSize() * object.GetWeight() &lt; a) { 
+            S.add(object); 
+        } 
+    } 
+    </span><span class="s0">/** AddAll - Добавляет все элементы в коллекцию 
+     * </span><span class="s4">@param </span><span class="s0">NewSecretS - коллекция, все элементы которой должны быть переданы в основную, состоящую из {</span><span class="s4">@link </span><span class="s0">SecretS} 
+     * </span><span class="s4">@version </span><span class="s0">1.0 
+     * */</span><span class="s1"> 
+    </span><span class="s2">public void </span><span class="s1">AddAll(Set&lt;SecretS&gt; NewSecretS) { 
+        S.addAll(NewSecretS); 
+    } 
+    </span><span class="s0">/** sort - Сортирует коллекцию LinkedHashList 
+     * </span><span class="s4">@version </span><span class="s0">1.1*/</span><span class="s1"> 
+    </span><span class="s2">public void </span><span class="s1">sortSet() { 
+        SecretS [] sec =  </span><span class="s2">new </span><span class="s1">SecretS[S.size()]; 
+        </span><span class="s2">int </span><span class="s1">j=</span><span class="s5">0</span><span class="s1">; 
+        </span><span class="s2">for </span><span class="s1">(SecretS compare:S) { 
+            sec[j] = compare; 
+            j++; 
+        } 
+        </span><span class="s2">for </span><span class="s1">(</span><span class="s2">int </span><span class="s1">i = S.size() - </span><span class="s5">1</span><span class="s1">; i &gt; </span><span class="s5">0</span><span class="s1">; i--) { 
+            </span><span class="s2">for </span><span class="s1">(j = </span><span class="s5">0</span><span class="s1">; j &lt; i; j++) { 
+                </span><span class="s2">if </span><span class="s1">(sec[j].compareTo(sec[j + </span><span class="s5">1</span><span class="s1">])&gt;</span><span class="s5">0</span><span class="s1">) { 
+                    SecretS tmp = sec[j]; 
+                    sec[j] = sec[j + </span><span class="s5">1</span><span class="s1">]; 
+                    sec[j + </span><span class="s5">1</span><span class="s1">] = tmp; 
+                } 
+            } 
+        } 
+        Set&lt;SecretS&gt; New = </span><span class="s2">new </span><span class="s1">LinkedHashSet&lt;&gt;(); 
+        </span><span class="s2">for</span><span class="s1">(</span><span class="s2">int </span><span class="s1">i = </span><span class="s5">0</span><span class="s1">;i &lt; sec.length;i++){ 
+            New.add(sec[i]); 
+        } 
+        S = New; 
+    } 
+    </span><span class="s0">/** add_to_map - Добавляет элемент в коллекцию Map 
+     *  </span><span class="s4">@param </span><span class="s0">NewMap - добавляемый объект в {</span><span class="s4">@link </span><span class="s0">Map} 
+     *  </span><span class="s4">@version </span><span class="s0">1.0 
+     */</span><span class="s1"> 
+    </span><span class="s2">public void </span><span class="s1">add_to_map(Map&lt;Rods, Person&gt; NewMap){ 
+        M.putAll(NewMap); 
+    } 
+}</span></pre>
+</body>
+</html>

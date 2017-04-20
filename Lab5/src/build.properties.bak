@@ -1,0 +1,12 @@
+lib=lib
+lab=Lab5
+out=out
+outClasses=out/Lab5
+jsonDir=lib/fastjson-1.2.24.jar
+jarBuildName=Lab5.jar
+testDir=testDir
+NameOfTest1=testDir.testPerson
+NameOfTest2=testDir.testSecrets
+svnRep=file:///home/s225110/svnRep/branches/vitya2
+localFileDir=//home//s225110//
+destAsciiDir=//home//s225110//Lab3OPI//trunk//localFiles
